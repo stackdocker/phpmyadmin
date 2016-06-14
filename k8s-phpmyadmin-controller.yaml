@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: phpmyadmin-sad
+  labels:
+    heritage: harpoon
+    name: phpmyadmin-sad
+    vendor: qingyuanos.io
+spec:
+  replicas: 1
+  selector:
+    name: phpmyadmin-sad
+  template:
+    metadata:
+      labels:
+        name: phpmyadmin-sad
+    spec:
+      containers:
+      - image: tangfeixiong/phpmyadmin:k8s
+        imagePullPolicy: IfNotPresent
+        name: phpmyadmin-sad
+        ports:
+        - containerPort: 80
